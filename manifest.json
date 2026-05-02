@@ -1,0 +1,86 @@
+{
+  "manifest_version": 3,
+  "name": "CheckPlease",
+  "version": "0.1.0",
+  "description": "Reads numbers, dates, and recipient names back out loud and in writing right before you pay. Built for dyslexic adults.",
+  "author": "Bob Georgeff",
+  "homepage_url": "https://dyslexia.help",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://*.paypal.com/*",
+    "https://venmo.com/*",
+    "https://*.venmo.com/*",
+    "https://cash.app/*",
+    "https://*.cash.app/*",
+    "https://*.zellepay.com/*",
+    "https://wise.com/*",
+    "https://*.wise.com/*",
+    "https://*.revolut.com/*",
+    "https://*.chase.com/*",
+    "https://*.bankofamerica.com/*",
+    "https://*.wellsfargo.com/*",
+    "https://*.capitalone.com/*",
+    "https://*.citi.com/*",
+    "https://*.usbank.com/*",
+    "https://*.pnc.com/*",
+    "https://mail.google.com/*",
+    "https://*.stripe.com/*",
+    "https://*.squareup.com/*"
+  ],
+  "background": {
+    "service_worker": "src/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.paypal.com/*",
+        "https://venmo.com/*",
+        "https://*.venmo.com/*",
+        "https://cash.app/*",
+        "https://*.cash.app/*",
+        "https://*.zellepay.com/*",
+        "https://wise.com/*",
+        "https://*.wise.com/*",
+        "https://*.revolut.com/*",
+        "https://*.chase.com/*",
+        "https://*.bankofamerica.com/*",
+        "https://*.wellsfargo.com/*",
+        "https://*.capitalone.com/*",
+        "https://*.citi.com/*",
+        "https://*.usbank.com/*",
+        "https://*.pnc.com/*",
+        "https://mail.google.com/*",
+        "https://*.stripe.com/*",
+        "https://*.squareup.com/*"
+      ],
+      "js": ["src/content.js"],
+      "css": ["src/modal/modal.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "src/options/options.html",
+  "action": {
+    "default_title": "CheckPlease — quick check before you pay",
+    "default_popup": "src/popup/popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/main.js",
+        "src/modal/*",
+        "src/lib/*",
+        "src/test/*"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

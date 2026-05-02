@@ -1,0 +1,109 @@
+/* Test page — for Bob to verify the modal works without going to a real payment site. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  background: #f5f6f8;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.cp-test {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+.cp-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: #0d3a5e;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  border-radius: 12px;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0 0 8px;
+  color: #0d3a5e;
+}
+
+.cp-help {
+  margin: 0 0 32px;
+  font-size: 16px;
+  color: #5a5a5a;
+  font-style: italic;
+}
+
+.cp-scenario {
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cp-scenario h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  color: #0d3a5e;
+}
+
+.cp-scenario p {
+  margin: 0;
+  font-size: 13px;
+  color: #5a5a5a;
+}
+
+.cp-scenario > div { flex: 1; }
+
+.cp-btn {
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  background: #0d3a5e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 120ms ease;
+}
+
+.cp-btn:hover { background: #0a2a47; }
+
+.cp-result {
+  margin: 24px 0 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 1.4em;
+  text-align: center;
+}
+
+.cp-result.cp-result-confirm {
+  background: #e8f5ee;
+  color: #0a5530;
+}
+
+.cp-result.cp-result-cancel {
+  background: #fff5f5;
+  color: #8b0017;
+}

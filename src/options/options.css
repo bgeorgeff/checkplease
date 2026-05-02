@@ -1,0 +1,205 @@
+/* Options page — same Verdana / generous-spacing aesthetic as the modal. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  background: #f5f6f8;
+  color: #1a1a1a;
+  line-height: 1.5;
+}
+
+.cp-options {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cp-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: #0d3a5e;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 700;
+  border-radius: 16px;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 0 0 8px;
+  font-weight: 700;
+  color: #0d3a5e;
+}
+
+.cp-tagline {
+  margin: 0;
+  font-size: 16px;
+  color: #5a5a5a;
+  font-style: italic;
+}
+
+.cp-section {
+  background: #ffffff;
+  padding: 28px 32px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.cp-section h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: #0d3a5e;
+  border-bottom: 1px solid #e0e3e8;
+  padding-bottom: 12px;
+}
+
+.cp-section label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #444;
+}
+
+.cp-section input[type="text"],
+.cp-section select {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  font-size: 16px;
+  border: 2px solid #d0d4da;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+.cp-section input[type="text"]:focus,
+.cp-section select:focus {
+  outline: none;
+  border-color: #0d3a5e;
+  box-shadow: 0 0 0 3px rgba(13, 58, 94, 0.15);
+}
+
+.cp-checkbox {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 400 !important;
+  margin-top: 0 !important;
+}
+
+.cp-checkbox input[type="checkbox"] {
+  margin-top: 4px;
+  transform: scale(1.2);
+}
+
+.cp-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.cp-section button {
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #0d6b3a;
+  color: #ffffff;
+  transition: background 120ms ease;
+}
+
+.cp-section button:hover { background: #0a5530; }
+
+.cp-section button.cp-btn-secondary {
+  background: #ffffff;
+  color: #b00020;
+  border: 2px solid #b00020;
+}
+
+.cp-section button.cp-btn-secondary:hover { background: #fff5f5; }
+
+.cp-status {
+  font-weight: 600;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  background: #f0f4f8;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.cp-status.cp-status-active {
+  background: #e8f5ee;
+  color: #0a5530;
+}
+
+.cp-status.cp-status-inactive {
+  background: #fff5f5;
+  color: #8b0017;
+}
+
+.cp-message {
+  margin: 12px 0 0;
+  font-size: 14px;
+  min-height: 1.4em;
+}
+
+.cp-message.cp-message-success { color: #0a5530; }
+.cp-message.cp-message-error { color: #b00020; }
+
+.cp-help {
+  font-size: 13px;
+  color: #5a5a5a;
+  margin: 12px 0 0;
+}
+
+.cp-sites-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.cp-sites-list li {
+  padding: 8px 12px;
+  background: #f0f4f8;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #444;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin-top: 32px;
+}
+
+footer a {
+  color: #0d3a5e;
+  text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }

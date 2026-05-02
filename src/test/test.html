@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CheckPlease — Test the Modal</title>
+  <link rel="stylesheet" href="../modal/modal.css">
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+  <main class="cp-test">
+    <div class="cp-logo">CP</div>
+    <h1>CheckPlease — Test Page</h1>
+    <p class="cp-help">
+      Use this page to verify that the modal works on your machine.
+      Each button below triggers a different scenario.
+    </p>
+
+    <section class="cp-scenario">
+      <h2>Person payment (Venmo-style)</h2>
+      <p>$1,000 to Jane Johnson — the wrong-amount catch.</p>
+      <button class="cp-btn" data-scenario="person">Show modal</button>
+    </section>
+
+    <section class="cp-scenario">
+      <h2>Business payment (bill-pay)</h2>
+      <p>$8,743.00 to ACME Accounting Inc. — the wrong-business catch.</p>
+      <button class="cp-btn" data-scenario="business">Show modal</button>
+    </section>
+
+    <section class="cp-scenario">
+      <h2>Government payment</h2>
+      <p>$247.00 to City of Columbus Water Department.</p>
+      <button class="cp-btn" data-scenario="government">Show modal</button>
+    </section>
+
+    <section class="cp-scenario">
+      <h2>Decimal-place mistake</h2>
+      <p>The classic: $5 typed as $0.50 (or $5,000 as $50).</p>
+      <button class="cp-btn" data-scenario="decimal">Show modal</button>
+    </section>
+
+    <section class="cp-scenario">
+      <h2>Flight booking with date</h2>
+      <p>$447 booking for a Tuesday in May — date readback.</p>
+      <button class="cp-btn" data-scenario="flight">Show modal</button>
+    </section>
+
+    <section class="cp-scenario">
+      <h2>Preview mode (visual only, no audio)</h2>
+      <p>What the modal looks like for users without a paid license.</p>
+      <button class="cp-btn" data-scenario="preview">Show modal</button>
+    </section>
+
+    <p class="cp-result" id="result"></p>
+  </main>
+
+  <script type="module" src="test.js"></script>
+</body>
+</html>

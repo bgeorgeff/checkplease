@@ -1,0 +1,188 @@
+/* CheckPlease modal — the dual-channel "handwritten check" prompt.
+   Verdana for the body (BDA-recommended for dyslexia, system font everywhere).
+   Generous spacing. High contrast. Designed to be impossible to miss. */
+
+#checkplease-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 2147483646;  /* near-max — sits above almost any site UI */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  animation: cp-fade-in 180ms ease-out;
+}
+
+@keyframes cp-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+#checkplease-modal {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-radius: 16px;
+  padding: 40px 48px;
+  max-width: 720px;
+  width: 100%;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  position: relative;
+  z-index: 2147483647;
+}
+
+#checkplease-modal .cp-header {
+  font-size: 18px;
+  font-weight: 600;
+  color: #5a5a5a;
+  margin-bottom: 24px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#checkplease-modal .cp-amount-numeral {
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  text-align: center;
+  color: #0d3a5e;  /* deep, readable navy — high contrast on white */
+  margin-bottom: 8px;
+  letter-spacing: 0.01em;
+  word-break: break-word;
+}
+
+#checkplease-modal .cp-amount-words {
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 32px;
+  font-style: italic;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+#checkplease-modal .cp-recipient-label {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #5a5a5a;
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+#checkplease-modal .cp-recipient {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #1a1a1a;
+  margin-bottom: 32px;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+#checkplease-modal .cp-date {
+  font-size: 18px;
+  text-align: center;
+  color: #444;
+  margin-bottom: 24px;
+}
+
+#checkplease-modal .cp-divider {
+  border: none;
+  height: 1px;
+  background: #d8d8d8;
+  margin: 28px 0;
+}
+
+#checkplease-modal .cp-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#checkplease-modal button {
+  font-family: Verdana, "DejaVu Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  min-width: 180px;
+}
+
+#checkplease-modal button:focus-visible {
+  outline: 3px solid #ffd700;
+  outline-offset: 2px;
+}
+
+#checkplease-modal .cp-btn-confirm {
+  background: #0d6b3a;     /* clear "go" green, accessible on white */
+  color: #ffffff;
+}
+
+#checkplease-modal .cp-btn-confirm:hover {
+  background: #0a5530;
+  transform: translateY(-1px);
+}
+
+#checkplease-modal .cp-btn-cancel {
+  background: #ffffff;
+  color: #b00020;
+  border-color: #b00020;
+}
+
+#checkplease-modal .cp-btn-cancel:hover {
+  background: #fff5f5;
+  transform: translateY(-1px);
+}
+
+#checkplease-modal .cp-footer {
+  margin-top: 28px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.04em;
+}
+
+#checkplease-modal .cp-footer .cp-brand {
+  font-weight: 700;
+  color: #0d3a5e;
+  letter-spacing: 0.06em;
+}
+
+/* Responsive — phones / narrow embedded windows */
+@media (max-width: 600px) {
+  #checkplease-modal {
+    padding: 24px 20px;
+  }
+  #checkplease-modal .cp-amount-numeral {
+    font-size: 44px;
+  }
+  #checkplease-modal .cp-amount-words {
+    font-size: 18px;
+  }
+  #checkplease-modal .cp-recipient {
+    font-size: 22px;
+  }
+  #checkplease-modal button {
+    width: 100%;
+    min-width: 0;
+  }
+}

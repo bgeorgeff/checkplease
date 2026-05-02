@@ -16,9 +16,46 @@ Nothing leaves your browser. Your numbers, dates, account names, and recipient h
 
 ## Status
 
-🟡 **In development** — PRD complete, build starting May 2026.
+🟢 **MVP scaffolding shipped (v0.1.0)** — installable in Chrome dev mode. Modal, audio readback, payment-detection on Venmo/PayPal/Cash App/Wise/Chase/BofA/Wells Fargo/Gmail.
 
 See [PRD.md](PRD.md) for the full product spec, including pricing model, technical architecture, marketing approach, and open decisions.
+
+## Install in Chrome (developer mode)
+
+1. Open Chrome and go to `chrome://extensions`
+2. Toggle **Developer mode** ON (top-right corner)
+3. Click **Load unpacked**
+4. Select the `checkplease` folder (the one containing `manifest.json`)
+5. The CheckPlease icon (CP on a navy square) appears in your Chrome toolbar
+
+## Test it works (recommended first step)
+
+1. Click the CP icon in your toolbar — popup appears
+2. Click **Test the modal**
+3. A test page opens with six demo scenarios — click any "Show modal" button
+4. The modal should appear with the amount displayed in two formats (numeral + words) plus the recipient name. If your speakers are on, you'll hear it read aloud.
+
+If the modal works on the test page but not on a real payment site, the site's DOM has likely changed and the selectors in `src/lib/sites.js` need updating.
+
+## Project structure
+
+```
+checkplease/
+├── manifest.json          # Manifest V3, minimal permissions
+├── icons/                 # Placeholder CP icons (16/48/128 px)
+├── scripts/
+│   └── make_icons.py      # Regenerates the placeholder icons
+├── src/
+│   ├── content.js         # Tiny bootstrap that dynamically imports main.js
+│   ├── main.js            # Click interceptor logic
+│   ├── service-worker.js  # Background script (license, settings)
+│   ├── modal/             # The CheckPlease modal (HTML/CSS/JS)
+│   ├── lib/               # numberToWords, dateToWords, sites, speech, license
+│   ├── options/           # Settings page
+│   ├── popup/             # Toolbar popup
+│   └── test/              # Test scenarios page
+└── PRD.md                 # Full product requirements
+```
 
 ## Tech
 

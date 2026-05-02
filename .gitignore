@@ -9,6 +9,9 @@ desktop.ini
 *.swp
 *.swo
 
+# Claude Code session state — local-only, never commit
+.claude/
+
 # Node (if we add tooling later)
 node_modules/
 npm-debug.log*

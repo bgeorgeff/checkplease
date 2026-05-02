@@ -91,6 +91,20 @@ function findMatchingButton(target, config) {
     if (matched) return matched;
   }
   // Fallback: text-based detection for buttons named Pay/Send/Confirm/Submit.
+  //
+  // This fallback is LOAD-BEARING — not just a backstop. As of v0.1.1, Venmo's
+  // Pay button has no stable selector hook (no data-testid, type="button" not
+  // "submit", only generic MUI classes). Interception on Venmo relies entirely
+  // on this regex matching the literal text "Pay".
+  //
+  // FRAGILITY: if a site ever renames its button text to something this regex
+  // doesn't match — "Send Payment", "Pay Now", "Complete Transfer", etc. — the
+  // fallback silently breaks and the modal stops firing. The regex matches
+  // "starts with one of these words" so "Pay $5" still works, but a literal
+  // rename will not. When adding new sites, prefer adding a precise selector to
+  // sites.js over relying on this text fallback. When extending the regex,
+  // expand it conservatively — "ok"/"yes"/"go" are too generic and risk firing
+  // on non-payment buttons.
   const btn = target.closest("button, [role='button']");
   if (btn) {
     const text = (btn.textContent || "").trim().toLowerCase();

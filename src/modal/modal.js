@@ -53,9 +53,11 @@ export function showModal(props) {
     html += `<div id="checkplease-amount" class="cp-amount-numeral">${escapeHtml(props.amountDisplay)}</div>`;
     html += `<div class="cp-amount-words">${escapeHtml(wordsForVisual)}</div>`;
 
+    html += `<div class="cp-recipient-label">To</div>`;
     if (props.recipient) {
-      html += `<div class="cp-recipient-label">To</div>`;
       html += `<div class="cp-recipient">${escapeHtml(props.recipient)}</div>`;
+    } else {
+      html += `<div class="cp-recipient cp-recipient-missing">Recipient not detected — verify on the page before confirming</div>`;
     }
 
     if (props.dateDisplay) {
@@ -120,6 +122,9 @@ function buildSpokenSentence({ amountWords, recipient, dateSpoken }) {
   }
   if (dateSpoken) {
     sentence += " on " + dateSpoken;
+  }
+  if (!recipient) {
+    sentence += ". The recipient could not be detected — please verify on screen";
   }
   sentence += ". Confirm?";
   return sentence;

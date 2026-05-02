@@ -31,9 +31,14 @@ export const SITE_CONFIGS = [
       'input[type="number"]'
     ],
     recipientSelectors: [
+      // Venmo uses MUI Chip for the "To: [recipient]" field on the Pay & Request screen.
+      // The .MuiChip-label class is the stable MUI class; the hashed css-* class is not.
+      // Earlier versions used h1/h2/h3 as a fallback — that grabbed the user's OWN name
+      // from the left sidebar profile, which is the dangerous wrong-recipient case
+      // CheckPlease is supposed to prevent. Never fall back to generic headings.
       '[data-testid="recipient-name"]',
-      '[data-testid="user-name"]',
-      'h1, h2, h3'
+      '.MuiChip-root .MuiChip-label',
+      '.MuiChip-label'
     ],
     category: "p2p"
   },

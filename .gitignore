@@ -1,0 +1,36 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (if we add tooling later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment / secrets — NEVER commit these
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Build artifacts (if we add a build step later)
+dist/
+build/
+*.zip
+
+# Logs
+*.log
+
+# Chrome extension packaging
+*.crx
+*.pem
+key.pem

@@ -122,6 +122,49 @@ export const SITE_CONFIGS = [
     amountSelectors: ['input[name*="amount" i]'],
     recipientSelectors: ['[name*="payee" i]', '[id*="recipient" i]'],
     category: "bank"
+  },
+  {
+    name: "Credit Union of Ohio",
+    hostMatch: /(^|\.)cuofohio\.org$/,
+    // The actual bill-pay UI lives inside a CheckFree iframe, NOT on
+    // cuofohio.org's top-level page (see the "Fiserv CheckFree Bill Pay"
+    // entry below). This entry stays so our interceptor still installs on
+    // the parent page in case CU exposes any payment buttons of its own,
+    // but the real wins happen inside the iframe.
+    submitButtonSelectors: [],
+    amountSelectors: [
+      'input[formcontrolname="amount"]',
+      '#amount-value'
+    ],
+    recipientSelectors: [
+      '#biller-header-payee-name',
+      '.selected-card-payee-name'
+    ],
+    category: "bank"
+  },
+  {
+    name: "Fiserv CheckFree Bill Pay",
+    // CheckFree (cw411.checkfreeweb.com and friends) is the bill-pay backend
+    // used by hundreds of US banks and credit unions, served as an embedded
+    // iframe inside each bank's online-banking site. Adding it once here
+    // covers a huge chunk of US banking bill-pay flows in one go — confirmed
+    // working for Credit Union of Ohio (parent page is online.cuofohio.org,
+    // the iframe is on cw411.checkfreeweb.com).
+    //
+    // For this to work, manifest.json must have "all_frames": true on the
+    // content_scripts entry — otherwise the script never injects into the
+    // iframe and this config is dead.
+    hostMatch: /(^|\.)checkfreeweb\.com$/,
+    submitButtonSelectors: [],
+    amountSelectors: [
+      'input[formcontrolname="amount"]',
+      '#amount-value'
+    ],
+    recipientSelectors: [
+      '#biller-header-payee-name',
+      '.selected-card-payee-name'
+    ],
+    category: "bank"
   }
 ];
 
@@ -159,7 +202,19 @@ export function parseCurrencyString(s) {
 }
 
 /**
- * Find an amount on the page using the site's selectors, falling back to generic detection.
+ * Find an amount on the page using the site's configured selectors.
+ *
+ * Important — this function deliberately FAILS CLOSED: if none of the
+ * site-specific selectors match, it returns null. Earlier versions fell back
+ * to scanning document.body for the first currency-shaped string, which on
+ * bank pages picked up account balances ("Available balance: $13,245.93")
+ * and triggered the modal with a wildly wrong amount (e.g. user clicks
+ * "Pay 1 Biller" before entering an amount → modal claims they're about to
+ * pay their entire balance). The body-text fallback is the same class of
+ * over-eager bug as the Venmo wrong-recipient h1/h2/h3 fallback. Do not
+ * reintroduce it. If a site's selectors miss, the right answer is no modal —
+ * main.js logs and lets the click proceed silently.
+ *
  * @param {SiteConfig} config
  * @returns {{rawString: string, amount: number}|null}
  */
@@ -171,12 +226,6 @@ export function findAmount(config) {
     const raw = (el.value !== undefined && el.value !== "") ? el.value : el.textContent;
     const amount = parseCurrencyString(raw);
     if (amount !== null) return { rawString: raw.trim(), amount };
-  }
-  // Generic fallback — scan visible text for a currency pattern.
-  const fallback = findCurrencyNearby(document.body);
-  if (fallback) {
-    const amount = parseCurrencyString(fallback);
-    if (amount !== null) return { rawString: fallback, amount };
   }
   return null;
 }

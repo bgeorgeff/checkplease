@@ -26,6 +26,8 @@
     "https://*.citi.com/*",
     "https://*.usbank.com/*",
     "https://*.pnc.com/*",
+    "https://*.cuofohio.org/*",
+    "https://*.checkfreeweb.com/*",
     "https://mail.google.com/*",
     "https://*.stripe.com/*",
     "https://*.squareup.com/*"
@@ -53,13 +55,16 @@
         "https://*.citi.com/*",
         "https://*.usbank.com/*",
         "https://*.pnc.com/*",
+        "https://*.cuofohio.org/*",
+        "https://*.checkfreeweb.com/*",
         "https://mail.google.com/*",
         "https://*.stripe.com/*",
         "https://*.squareup.com/*"
       ],
       "js": ["src/content.js"],
       "css": ["src/modal/modal.css"],
-      "run_at": "document_idle"
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ],
   "options_page": "src/options/options.html",
